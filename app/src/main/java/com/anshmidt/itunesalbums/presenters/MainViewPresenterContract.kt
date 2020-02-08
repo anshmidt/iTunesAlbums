@@ -11,8 +11,9 @@ interface MainViewPresenterContract {
     }
 
     interface Presenter {
-        fun onViewAttached()
-        fun onViewDetached()
+        fun onViewCreated()
+        fun onViewStopped()
+        fun onViewDestroyed()
         fun onSearchRequest(searchQuery: String)
 
         fun onSearchViewExpand()

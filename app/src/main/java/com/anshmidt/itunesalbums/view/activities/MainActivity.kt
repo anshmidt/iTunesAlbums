@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
         recyclerViewAlbumsList.layoutManager = linearLayoutManager
         recyclerViewAlbumsList.adapter = albumsListAdapter
 
-        mainPresenter.onViewAttached()
+        mainPresenter.onViewCreated()
     }
 
     override fun displayAlbums(albums: List<Album>) {
@@ -87,9 +87,13 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
 
     override fun onStop() {
         super.onStop()
-        mainPresenter.onViewDetached()
+        mainPresenter.onViewStopped()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mainPresenter.onViewDestroyed()
+    }
 
     private fun initDagger() {
         DaggerAppComponent.builder()

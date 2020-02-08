@@ -18,7 +18,7 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
     val MAX_NUMBER_OF_ALBUMS_FOR_SEARCH_RESULT_LIMIT = 10
     private var subscriptions = CompositeDisposable()
 
-    override fun onViewAttached() {
+    override fun onViewCreated() {
         val testAlbums =
             arrayListOf(
                 Album("Artist1", "collection1"),
@@ -28,7 +28,13 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
         view.displayAlbums(testAlbums)
     }
 
-    override fun onViewDetached() {
+    override fun onViewStopped() {
+        if (!subscriptions.isDisposed) {
+            subscriptions.clear()
+        }
+    }
+
+    override fun onViewDestroyed() {
         if (!subscriptions.isDisposed) {
             subscriptions.dispose()
         }
