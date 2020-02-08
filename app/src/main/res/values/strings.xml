@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">iTunes Albums</string>
+    <string name="search_field_title">Search</string>
+    <string name="search_field_hint">Search by album</string>
+
+    <string name="album_artwork_content_description">Album artwork</string>
+
+    <string name="server_not_available_error_message">Cannot connect to iTunes server: %1$s</string>
+</resources>
