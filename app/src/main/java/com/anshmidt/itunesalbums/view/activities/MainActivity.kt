@@ -68,9 +68,8 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-//                    debugShowAlbumsForRequest(query)
-                    mainPresenter.onSearchRequest(query)
+                query?.let {
+                    mainPresenter.onSearchRequest(it)
                     searchView.clearFocus()
 //                    searchView.setQuery("", false)
 //                    searchItem.collapseActionView()
@@ -100,17 +99,6 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
             .inject(this)
     }
 
-//    private fun debugShowAlbumsForRequest(request: String) {
-//        albumsListAdapter.updateAlbums(arrayListOf(
-//            Album(request, "collection1"),
-//            Album(request, "collection2"),
-//            Album(request, "collection3")
-//        ))
-//    }
-
-//    private fun displayEmptyAlbumsList() {
-//        albumsListAdapter.updateAlbums(arrayListOf())
-//    }
 
     override fun showServerNotAvailableErrorMessage(error: Throwable) {
         Toast.makeText(this, getString(R.string.server_not_available_error_message, error.toString()), Toast.LENGTH_SHORT).show()
