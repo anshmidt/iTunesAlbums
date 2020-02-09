@@ -59,7 +59,8 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
     }
 
     private fun onResponseFromServer(itunesAlbumsResponse: ItunesAlbumsResponse) {
-        view.displayAlbums(itunesAlbumsResponse.albumsList)
+        val albumsSortedAlphabetically = itunesAlbumsResponse.albumsList.sortedBy { it.albumName }
+        view.displayAlbums(albumsSortedAlphabetically)
     }
 
     private fun onErrorFromServer(error: Throwable) {

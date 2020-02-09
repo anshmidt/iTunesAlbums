@@ -26,7 +26,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textArtistNameSearchResults"
+            android:id="@+id/textAlbumNameSearchResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textAlbumNameSearchResults"
+            android:id="@+id/textArtistNameSearchResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageAlbumArtworkSearchResults"
-            app:layout_constraintTop_toBottomOf="@+id/textArtistNameSearchResults" />
+            app:layout_constraintTop_toBottomOf="@+id/textAlbumNameSearchResults" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

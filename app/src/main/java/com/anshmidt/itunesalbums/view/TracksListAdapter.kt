@@ -12,9 +12,11 @@ class TracksListAdapter(val tracks: ArrayList<Track>) : RecyclerView.Adapter<Tra
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val textTrackName = view.textTrackNameAlbumInfo
+        private val textTrackNumber = view.textTrackNumberAlbumInfo
 
-        fun bind(track: Track) {
+        fun bind(track: Track, position: Int) {
             textTrackName.text = track.name
+            textTrackNumber.text = getDisplayableTrackNumber(position)
         }
     }
 
@@ -31,7 +33,11 @@ class TracksListAdapter(val tracks: ArrayList<Track>) : RecyclerView.Adapter<Tra
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(tracks[position])
+        holder.bind(tracks[position], position)
+    }
+
+    private fun getDisplayableTrackNumber(position: Int): String {
+        return (position + 1).toString() + "."
     }
 
     fun updateTracks(newTracks: List<Track>) {

@@ -1,73 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageAlbumArtworkAlbumInfo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:contentDescription="@string/album_artwork_content_description"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/album_artwork_placeholder" />
 
-    <TextView
-        android:id="@+id/textArtistNameAlbumInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Eternal Tears of Sorrow"
-        android:textColor="@color/colorTextTitle"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAlbumArtworkAlbumInfo" />
-
-    <TextView
-        android:id="@+id/textAlbumNameAlbumInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="Tree and the moonlight"
-        android:textColor="@color/colorTextContent"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textArtistNameAlbumInfo" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTracksList"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlbumNameAlbumInfo">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/imageAlbumArtworkAlbumInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:contentDescription="@string/album_artwork_content_description"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/album_artwork_placeholder" />
+
+        <TextView
+            android:id="@+id/textAlbumNameAlbumInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Tree and the moonlight"
+            android:textColor="@color/colorTextTitle"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageAlbumArtworkAlbumInfo" />
+
+        <TextView
+            android:id="@+id/textArtistNameAlbumInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Eternal Tears of Sorrow"
+            android:textColor="@color/colorTextContent"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAlbumNameAlbumInfo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTracksList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textArtistNameAlbumInfo">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

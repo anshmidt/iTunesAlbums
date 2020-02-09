@@ -49,14 +49,14 @@ class AlbumInfoPresenter @Inject constructor(private val view: AlbumInfoViewPres
                 entityType = RequestValues.SONG_ENTITY,
                 mediaType = RequestValues.MUSIC_MEDIA
             )
-//            .getTracksByCollectionId(982690853, "song", "music")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun onResponseFromServer(itunesTracksResponse: ItunesTracksResponse) {
-        Log.d("GSON", Gson().toJson(itunesTracksResponse))
-        view.showTracks(retrieveTracksFromServerResponse(itunesTracksResponse))
+        val tracks = retrieveTracksFromServerResponse(itunesTracksResponse)
+        val tracksSortedAlphabetically = tracks.sortedBy { it.name }
+        view.showTracks(tracksSortedAlphabetically)
     }
 
     /**
