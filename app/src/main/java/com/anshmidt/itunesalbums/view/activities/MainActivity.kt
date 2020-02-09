@@ -10,7 +10,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anshmidt.itunesalbums.ItunesAlbumsApplication
 import com.anshmidt.itunesalbums.R
-import com.anshmidt.itunesalbums.di.component.DaggerApplicationComponent
 import com.anshmidt.itunesalbums.di.module.MainMvpModule
 import com.anshmidt.itunesalbums.network.models.Album
 import com.anshmidt.itunesalbums.mvp.presenters.MainPresenter
@@ -22,7 +21,8 @@ import javax.inject.Inject
 const val APP_PACKAGE_NAME = "com.anshmidt.itunesalbums"
 const val KEY_INTENT_ARTIST_NAME = "$APP_PACKAGE_NAME.ARTIST_NAME"
 const val KEY_INTENT_ALBUM_NAME = "$APP_PACKAGE_NAME.ALBUM_NAME"
-const val KEY_INTENT_ARTWORK_URL = "$APP_PACKAGE_NAME.ARTWORK_URL"
+const val KEY_INTENT_SMALL_ARTWORK_URL = "$APP_PACKAGE_NAME.SMALL_ARTWORK_URL"
+const val KEY_INTENT_LARGE_ARTWORK_URL = "$APP_PACKAGE_NAME.LARGE_ARTWORK_URL"
 
 class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
@@ -128,7 +128,8 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         val intent = Intent(this, AlbumInfoActivity::class.java)
         intent.putExtra(KEY_INTENT_ARTIST_NAME, album.artistName)
         intent.putExtra(KEY_INTENT_ALBUM_NAME, album.albumName)
-        intent.putExtra(KEY_INTENT_ARTWORK_URL, album.artworkUrl)
+        intent.putExtra(KEY_INTENT_SMALL_ARTWORK_URL, album.smallArtworkUrl)
+        intent.putExtra(KEY_INTENT_LARGE_ARTWORK_URL, album.largeArtworkUrl)
         startActivity(intent)
     }
 }

@@ -33,8 +33,9 @@ class AlbumsListAdapter(
             textAlbumName.text = album.albumName
             textArtistName.text = album.artistName
             Glide.with(itemView)
-                .load(album.artworkUrl)
+                .load(album.smallArtworkUrl)
                 .centerCrop()
+                .skipMemoryCache(false)  // caching of the images is enabled
                 .placeholder(R.drawable.album_artwork_placeholder)
                 .error(R.drawable.album_artwork_placeholder)
                 .fallback(R.drawable.album_artwork_placeholder)
