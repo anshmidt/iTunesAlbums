@@ -54,16 +54,12 @@ class AlbumsListAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.album_card_search_results, parent, false)
         )
-
     }
 
     override fun getItemCount(): Int {

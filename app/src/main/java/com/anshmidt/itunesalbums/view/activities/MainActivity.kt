@@ -21,12 +21,11 @@ import javax.inject.Inject
 const val APP_PACKAGE_NAME = "com.anshmidt.itunesalbums"
 const val KEY_INTENT_ARTIST_NAME = "$APP_PACKAGE_NAME.ARTIST_NAME"
 const val KEY_INTENT_ALBUM_NAME = "$APP_PACKAGE_NAME.ALBUM_NAME"
+const val KEY_INTENT_COLLECTION_ID = "$APP_PACKAGE_NAME.COLLECTION_ID"
 const val KEY_INTENT_SMALL_ARTWORK_URL = "$APP_PACKAGE_NAME.SMALL_ARTWORK_URL"
-const val KEY_INTENT_LARGE_ARTWORK_URL = "$APP_PACKAGE_NAME.LARGE_ARTWORK_URL"
 
 class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
-//    private lateinit var linearLayoutManager: LinearLayoutManager
     private val albumsListAdapter = AlbumsListAdapter(arrayListOf() ,this)
 
     @Inject
@@ -35,11 +34,8 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initDagger()
-
         setupAlbumsListAdapter()
-
         presenter.onViewCreated()
     }
 
@@ -49,13 +45,9 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
-
-
         val searchMenuItem = menu.findItem(R.id.menuItemSearch)
         val searchView = searchMenuItem?.actionView as SearchView
-
         setSearchViewHint(searchView)
-
 
         searchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
@@ -129,7 +121,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         intent.putExtra(KEY_INTENT_ARTIST_NAME, album.artistName)
         intent.putExtra(KEY_INTENT_ALBUM_NAME, album.albumName)
         intent.putExtra(KEY_INTENT_SMALL_ARTWORK_URL, album.smallArtworkUrl)
-        intent.putExtra(KEY_INTENT_LARGE_ARTWORK_URL, album.largeArtworkUrl)
+        intent.putExtra(KEY_INTENT_COLLECTION_ID, album.collectionId)
         startActivity(intent)
     }
 }

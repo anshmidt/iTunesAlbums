@@ -2,16 +2,9 @@ package com.anshmidt.itunesalbums.network
 
 
 object ApiConstants {
-
     const val BASE_URL = "https://itunes.apple.com"
     const val SEARCH_ENDPOINT = "/search"
-
-
-
-
 }
-
-//https://itunes.apple.com/search?term=outlw&entity=album&media=music&attribute=albumTerm&limit=5
 
 object RequestKeys {
     const val TERM = "term"
@@ -19,6 +12,7 @@ object RequestKeys {
     const val MEDIA = "media"
     const val ATTRIBUTE = "attribute"
     const val LIMIT = "limit"
+    const val COLLECTION_ID = "id"
 }
 
 object RequestValues {
@@ -32,9 +26,18 @@ object ItunesResponseKeys {
     const val RESULTS = "results"
 }
 
-object TrackResponseKeys {
+object AlbumResponseKeys {
     const val ARTIST_NAME = "artistName"
     const val COLLECTION_NAME = "collectionName"
-    const val TRACK_NAME = "trackName"
     const val ARTWORK_URL_100 = "artworkUrl100"
+    const val COLLECTION_ID = "collectionId"
+}
+
+object TrackResponseKeys {
+    const val KIND = "kind"
+    const val TRACK_NAME = "trackName"
+}
+
+object TrackResponseValues {
+    const val SONG_KIND = "song"
 }

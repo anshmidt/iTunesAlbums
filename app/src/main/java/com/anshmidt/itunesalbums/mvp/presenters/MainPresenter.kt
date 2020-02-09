@@ -4,44 +4,30 @@ import com.anshmidt.itunesalbums.mvp.contracts.MainViewPresenterContract
 import com.anshmidt.itunesalbums.network.ItunesApi
 import com.anshmidt.itunesalbums.network.RequestValues
 import com.anshmidt.itunesalbums.network.models.Album
-import com.anshmidt.itunesalbums.network.models.ItunesResponse
+import com.anshmidt.itunesalbums.network.models.ItunesAlbumsResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(private val view: MainViewPresenterContract.View)
-    : MainViewPresenterContract.Presenter {
+class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View, val itunesApi: ItunesApi)
+    : MainViewPresenterContract.Presenter, BasePresenter() {
 
-    @Inject
-    lateinit var itunesApi: ItunesApi
-
-    val MAX_NUMBER_OF_ALBUMS_FOR_SEARCH_RESULT_LIMIT = 10
-    private var subscriptions = CompositeDisposable()
+    val MAX_NUMBER_OF_ALBUMS_FOR_SEARCH_RESULT_LIMIT = 100
 
     override fun onViewCreated() {
         val testAlbums: List<Album> = arrayListOf()
         view.displayAlbums(testAlbums)
     }
 
-    override fun onViewStopped() {
-        if (!subscriptions.isDisposed) {
-            subscriptions.clear()
-        }
-    }
 
-    override fun onViewDestroyed() {
-        if (!subscriptions.isDisposed) {
-            subscriptions.dispose()
-        }
-    }
 
     override fun onSearchRequest(searchQuery: String) {
         val subscription = getSearchByAlbumResponseSingle(searchQuery)
             .subscribe(
-                { itunesResponse: ItunesResponse ->
-                    onResponseFromServer(itunesResponse)
+                { itunesAlbumsResponse: ItunesAlbumsResponse ->
+                    onResponseFromServer(itunesAlbumsResponse)
                 },
                 { error: Throwable ->
                     onErrorFromServer(error)
@@ -59,7 +45,7 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
         view.displayAlbums(testAlbums)
     }
 
-    private fun getSearchByAlbumResponseSingle(searchQuery: String): Single<ItunesResponse> {
+    private fun getSearchByAlbumResponseSingle(searchQuery: String): Single<ItunesAlbumsResponse> {
         return itunesApi
             .getSearchResults(
                 searchText = searchQuery,
@@ -72,8 +58,8 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    private fun onResponseFromServer(itunesResponse: ItunesResponse) {
-        view.displayAlbums(itunesResponse.albumsList)
+    private fun onResponseFromServer(itunesAlbumsResponse: ItunesAlbumsResponse) {
+        view.displayAlbums(itunesAlbumsResponse.albumsList)
     }
 
     private fun onErrorFromServer(error: Throwable) {
