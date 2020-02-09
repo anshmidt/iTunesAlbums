@@ -9,9 +9,9 @@ data class Album (
     val artistName: String,
 
     /**
-     * The same as album name
+     * Collection name is the same as album name
      */
     @SerializedName(TrackResponseKeys.COLLECTION_NAME)
-    val collectionName: String
+    val albumName: String
 
 )

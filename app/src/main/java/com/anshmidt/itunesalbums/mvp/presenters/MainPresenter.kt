@@ -1,5 +1,6 @@
-package com.anshmidt.itunesalbums.presenters
+package com.anshmidt.itunesalbums.mvp.presenters
 
+import com.anshmidt.itunesalbums.mvp.contracts.MainViewPresenterContract
 import com.anshmidt.itunesalbums.network.ItunesApi
 import com.anshmidt.itunesalbums.network.RequestValues
 import com.anshmidt.itunesalbums.network.models.Album
@@ -10,7 +11,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(private val view: MainViewPresenterContract.View) : MainViewPresenterContract.Presenter {
+class MainPresenter @Inject constructor(private val view: MainViewPresenterContract.View)
+    : MainViewPresenterContract.Presenter {
 
     @Inject
     lateinit var itunesApi: ItunesApi
@@ -86,5 +88,9 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
 
     private fun onErrorFromServer(error: Throwable) {
         view.showServerNotAvailableErrorMessage(error)
+    }
+
+    override fun onAlbumClick(position: Int, album: Album) {
+
     }
 }

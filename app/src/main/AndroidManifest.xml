@@ -3,6 +3,7 @@
     package="com.anshmidt.itunesalbums">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".ItunesAlbumsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,10 +25,9 @@
         </activity>
 
 
-
-
-        <activity android:name="com.anshmidt.itunesalbums.view.activities.AlbumInfoActivity" />
-        <activity android:name="com.anshmidt.itunesalbums.view.activities.SearchActivity" />
+        <activity android:name="com.anshmidt.itunesalbums.view.activities.AlbumInfoActivity"
+            android:parentActivityName="com.anshmidt.itunesalbums.view.activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>

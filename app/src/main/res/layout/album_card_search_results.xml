@@ -9,13 +9,13 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutAlbumCard"
+        android:id="@+id/layoutAlbumCardSearchResults"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorMainBackground">
 
         <ImageView
-            android:id="@+id/imageAlbumArtwork"
+            android:id="@+id/imageAlbumArtworkSearchResults"
             android:layout_width="@dimen/album_card_height"
             android:layout_height="@dimen/album_card_height"
             android:contentDescription="@string/album_artwork_content_description"
@@ -26,7 +26,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textArtistName"
+            android:id="@+id/textArtistNameSearchResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -39,11 +39,11 @@
             android:textColor="@color/colorTextTitle"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageAlbumArtwork"
+            app:layout_constraintStart_toEndOf="@+id/imageAlbumArtworkSearchResults"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textAlbumName"
+            android:id="@+id/textAlbumNameSearchResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -56,8 +56,8 @@
             android:textColor="@color/colorTextContent"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageAlbumArtwork"
-            app:layout_constraintTop_toBottomOf="@+id/textArtistName" />
+            app:layout_constraintStart_toEndOf="@+id/imageAlbumArtworkSearchResults"
+            app:layout_constraintTop_toBottomOf="@+id/textArtistNameSearchResults" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

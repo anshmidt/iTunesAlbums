@@ -1,5 +1,6 @@
 package com.anshmidt.itunesalbums.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,25 +8,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anshmidt.itunesalbums.ItunesAlbumsApplication
 import com.anshmidt.itunesalbums.R
-import com.anshmidt.itunesalbums.di.component.DaggerAppComponent
-import com.anshmidt.itunesalbums.di.module.MvpModule
-import com.anshmidt.itunesalbums.di.module.NetworkModule
+import com.anshmidt.itunesalbums.di.component.DaggerApplicationComponent
+import com.anshmidt.itunesalbums.di.module.MainMvpModule
 import com.anshmidt.itunesalbums.network.models.Album
-import com.anshmidt.itunesalbums.presenters.MainPresenter
-import com.anshmidt.itunesalbums.presenters.MainViewPresenterContract
+import com.anshmidt.itunesalbums.mvp.presenters.MainPresenter
+import com.anshmidt.itunesalbums.mvp.contracts.MainViewPresenterContract
 import com.anshmidt.itunesalbums.view.AlbumsListAdapter
 import kotlinx.android.synthetic.main.albums_list.*
 import javax.inject.Inject
 
+const val KEY_INTENT_ARTIST_NAME = "com.anshmidt.itunesalbums.ARTIST_NAME"
+const val KEY_INTENT_ALBUM_NAME = "com.anshmidt.itunesalbums.ALBUM_NAME"
 
-class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
+class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
-    private lateinit var linearLayoutManager: LinearLayoutManager
-    private val albumsListAdapter = AlbumsListAdapter(arrayListOf())
+//    private lateinit var linearLayoutManager: LinearLayoutManager
+    private val albumsListAdapter = AlbumsListAdapter(arrayListOf() ,this)
 
     @Inject
-    lateinit var mainPresenter: MainPresenter
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +36,9 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
 
         initDagger()
 
-        linearLayoutManager = LinearLayoutManager(this)
-        recyclerViewAlbumsList.layoutManager = linearLayoutManager
-        recyclerViewAlbumsList.adapter = albumsListAdapter
+        setupAlbumsListAdapter()
 
-        mainPresenter.onViewCreated()
+        presenter.onViewCreated()
     }
 
     override fun displayAlbums(albums: List<Album>) {
@@ -56,12 +57,12 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
 
         searchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
-                mainPresenter.onSearchViewExpand()
+                presenter.onSearchViewExpand()
                 return true
             }
 
             override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                mainPresenter.onSearchViewCollapse()
+                presenter.onSearchViewCollapse()
                 return true
             }
         })
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    mainPresenter.onSearchRequest(it)
+                    presenter.onSearchRequest(it)
                     searchView.clearFocus()
 //                    searchView.setQuery("", false)
 //                    searchItem.collapseActionView()
@@ -87,29 +88,49 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View {
 
     override fun onStop() {
         super.onStop()
-        mainPresenter.onViewStopped()
+        presenter.onViewStopped()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mainPresenter.onViewDestroyed()
+        presenter.onViewDestroyed()
     }
 
     private fun initDagger() {
-        DaggerAppComponent.builder()
-            .networkModule(NetworkModule())
-            .mvpModule(MvpModule(this))
-            .build()
+        ItunesAlbumsApplication.component
+            .plus(MainMvpModule(this))
             .inject(this)
+//        (application as ItunesAlbumsApplication).component.inject(this)
+//        DaggerApplicationComponent.builder()
+//            .mainMvpModule(MainMvpModule(this))
+//            .build()
+//            .inject(this)
     }
 
 
     override fun showServerNotAvailableErrorMessage(error: Throwable) {
-        Toast.makeText(this, getString(R.string.server_not_available_error_message, error.toString()), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.server_not_available_error_message, error.toString()),
+                Toast.LENGTH_SHORT).show()
     }
 
     private fun setSearchViewHint(searchView: SearchView) {
         searchView.queryHint = getString(R.string.search_field_hint)
     }
 
+    private fun setupAlbumsListAdapter() {
+        val linearLayoutManager = LinearLayoutManager(this)
+        recyclerViewAlbumsList.layoutManager = linearLayoutManager
+        recyclerViewAlbumsList.adapter = albumsListAdapter
+    }
+
+    override fun onAlbumClick(position: Int, album: Album) {
+        presenter.onAlbumClick(position, album)
+    }
+
+    override fun openAlbumInfoActivity(album: Album) {
+        val intent = Intent(this, AlbumInfoActivity::class.java)
+        intent.putExtra(KEY_INTENT_ARTIST_NAME, album.artistName)
+        intent.putExtra(KEY_INTENT_ALBUM_NAME, album.albumName)
+        startActivity(intent)
+    }
 }
