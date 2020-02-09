@@ -10,7 +10,7 @@ interface ItunesApi {
 
 
     /**
-     * Example: //https://itunes.apple.com/search?term=outlw&entity=album&media=music&attribute=albumTerm&limit=5
+     * Example: https://itunes.apple.com/search?term=out&entity=album&media=music&attribute=albumTerm&limit=5
      */
     @GET(ApiConstants.SEARCH_ENDPOINT)
     fun getSearchResults(
@@ -25,7 +25,7 @@ interface ItunesApi {
      * Example: https://itunes.apple.com/lookup?id=982690853&entity=song&media=music
      * The first item in response list is a collection, all other items are tracks.
      */
-    @GET(ApiConstants.SEARCH_ENDPOINT)
+    @GET(ApiConstants.LOOKUP_ENDPOINT)
     fun getTracksByCollectionId(
         @Query(RequestKeys.COLLECTION_ID) collectionId: Int,
         @Query(RequestKeys.ENTITY) entityType: String,

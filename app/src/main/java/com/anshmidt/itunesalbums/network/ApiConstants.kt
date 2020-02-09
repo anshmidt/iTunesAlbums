@@ -4,6 +4,7 @@ package com.anshmidt.itunesalbums.network
 object ApiConstants {
     const val BASE_URL = "https://itunes.apple.com"
     const val SEARCH_ENDPOINT = "/search"
+    const val LOOKUP_ENDPOINT = "/lookup"
 }
 
 object RequestKeys {
@@ -17,6 +18,7 @@ object RequestKeys {
 
 object RequestValues {
     const val ALBUM_ENTITY = "album"
+    const val SONG_ENTITY = "song"
     const val MUSIC_MEDIA = "music"
     const val ALBUM_TERM_ATTRIBUTE = "albumTerm"
 }
