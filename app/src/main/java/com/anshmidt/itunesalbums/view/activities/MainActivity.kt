@@ -19,8 +19,10 @@ import com.anshmidt.itunesalbums.view.AlbumsListAdapter
 import kotlinx.android.synthetic.main.albums_list.*
 import javax.inject.Inject
 
-const val KEY_INTENT_ARTIST_NAME = "com.anshmidt.itunesalbums.ARTIST_NAME"
-const val KEY_INTENT_ALBUM_NAME = "com.anshmidt.itunesalbums.ALBUM_NAME"
+const val APP_PACKAGE_NAME = "com.anshmidt.itunesalbums"
+const val KEY_INTENT_ARTIST_NAME = "$APP_PACKAGE_NAME.ARTIST_NAME"
+const val KEY_INTENT_ALBUM_NAME = "$APP_PACKAGE_NAME.ALBUM_NAME"
+const val KEY_INTENT_ARTWORK_URL = "$APP_PACKAGE_NAME.ARTWORK_URL"
 
 class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
@@ -100,11 +102,6 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         ItunesAlbumsApplication.component
             .plus(MainMvpModule(this))
             .inject(this)
-//        (application as ItunesAlbumsApplication).component.inject(this)
-//        DaggerApplicationComponent.builder()
-//            .mainMvpModule(MainMvpModule(this))
-//            .build()
-//            .inject(this)
     }
 
 
@@ -131,6 +128,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         val intent = Intent(this, AlbumInfoActivity::class.java)
         intent.putExtra(KEY_INTENT_ARTIST_NAME, album.artistName)
         intent.putExtra(KEY_INTENT_ALBUM_NAME, album.albumName)
+        intent.putExtra(KEY_INTENT_ARTWORK_URL, album.artworkUrl)
         startActivity(intent)
     }
 }

@@ -12,6 +12,9 @@ data class Album (
      * Collection name is the same as album name
      */
     @SerializedName(TrackResponseKeys.COLLECTION_NAME)
-    val albumName: String
+    val albumName: String,
+
+    @SerializedName(TrackResponseKeys.ARTWORK_URL)
+    val artworkUrl: String
 
 )

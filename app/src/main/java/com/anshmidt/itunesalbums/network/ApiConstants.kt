@@ -36,4 +36,5 @@ object TrackResponseKeys {
     const val ARTIST_NAME = "artistName"
     const val COLLECTION_NAME = "collectionName"
     const val TRACK_NAME = "trackName"
+    const val ARTWORK_URL = "artworkUrl100"
 }

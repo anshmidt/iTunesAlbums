@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.anshmidt.itunesalbums.R
 import com.anshmidt.itunesalbums.network.models.Album
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.album_card_search_results.view.*
 
 class AlbumsListAdapter(
@@ -18,7 +19,11 @@ class AlbumsListAdapter(
         fun onAlbumClick(position: Int, album: Album)
     }
 
-    inner class ViewHolder(view: View, albumClickListener: AlbumClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        init {
+            view.setOnClickListener(this)
+        }
 
         private val imageAlbumArtwork = view.imageAlbumArtworkSearchResults
         private val textArtistName = view.textArtistNameSearchResults
@@ -27,7 +32,13 @@ class AlbumsListAdapter(
         fun bind(album: Album) {
             textAlbumName.text = album.albumName
             textArtistName.text = album.artistName
-
+            Glide.with(itemView)
+                .load(album.artworkUrl)
+                .centerCrop()
+                .placeholder(R.drawable.album_artwork_placeholder)
+                .error(R.drawable.album_artwork_placeholder)
+                .fallback(R.drawable.album_artwork_placeholder)
+                .into(imageAlbumArtwork)
         }
 
         override fun onClick(view: View?) {
@@ -49,8 +60,7 @@ class AlbumsListAdapter(
         return ViewHolder(
             LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.album_card_search_results, parent, false),
-            albumClickListener
+                .inflate(R.layout.album_card_search_results, parent, false)
         )
 
     }

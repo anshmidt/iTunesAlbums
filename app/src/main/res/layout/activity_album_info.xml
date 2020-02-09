@@ -9,12 +9,12 @@
         android:id="@+id/imageAlbumArtworkAlbumInfo"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/album_artwork_content_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/album_artwork_placeholder"
-        android:contentDescription="@string/album_artwork_content_description"
-        />
+        app:srcCompat="@drawable/album_artwork_placeholder" />
 
     <TextView
         android:id="@+id/textArtistNameAlbumInfo"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="Tree and the moonlight"
         android:textColor="@color/colorTextContent"
         android:textSize="18sp"

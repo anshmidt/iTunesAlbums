@@ -22,18 +22,14 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         setContentView(R.layout.activity_album_info)
         initDagger()
         provideAlbumToPresenter()
+        presenter.onViewCreated()
     }
 
     private fun initDagger() {
         ItunesAlbumsApplication.component
             .plus(AlbumInfoMvpModule(this))
             .inject(this)
-//        (application as ItunesAlbumsApplication).component
-//            .inject(this)
-//        DaggerApplicationComponent.builder()
-//            .albumInfoMvpModule(AlbumInfoMvpModule(this))
-//            .build()
-//            .inject(this)
+
     }
 
     override fun showAlbumInfo(album: Album) {
@@ -44,8 +40,9 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
     private fun provideAlbumToPresenter() {
         val artistName = intent.getStringExtra(KEY_INTENT_ARTIST_NAME)!!
         val albumName = intent.getStringExtra(KEY_INTENT_ALBUM_NAME)!!
+        val artworkUrl = intent.getStringExtra(KEY_INTENT_ARTWORK_URL)!!
 
-        val album = Album(artistName = artistName, albumName = albumName)
+        val album = Album(artistName = artistName, albumName = albumName, artworkUrl = artworkUrl)
         presenter.setAlbumInfo(album)
     }
 }

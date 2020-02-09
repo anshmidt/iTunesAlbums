@@ -9,23 +9,8 @@ import com.anshmidt.itunesalbums.di.module.NetworkModule
 
 class ItunesAlbumsApplication : Application() {
 
-//    val component: ApplicationComponent by lazy {
-//        DaggerApplicationComponent.builder()
-//            .networkModule(NetworkModule())
-//            .build()
-//    }
-
     companion object {
         lateinit var component: ApplicationComponent
-    }
-
-
-
-    protected fun initDaggerComponent(): ApplicationComponent {
-        return DaggerApplicationComponent
-            .builder()
-            .networkModule(NetworkModule())
-            .build()
     }
 
     override fun onCreate() {
@@ -33,5 +18,12 @@ class ItunesAlbumsApplication : Application() {
         val applicationComponent = initDaggerComponent()
         applicationComponent.inject(this)
         component = applicationComponent
+    }
+
+    protected fun initDaggerComponent(): ApplicationComponent {
+        return DaggerApplicationComponent
+            .builder()
+            .networkModule(NetworkModule())
+            .build()
     }
 }

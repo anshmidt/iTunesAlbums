@@ -21,12 +21,7 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
     private var subscriptions = CompositeDisposable()
 
     override fun onViewCreated() {
-        val testAlbums =
-            arrayListOf(
-                Album("Artist1", "collection1"),
-                Album("Artist2", "collection2"),
-                Album("Artist3", "collection3")
-            )
+        val testAlbums: List<Album> = arrayListOf()
         view.displayAlbums(testAlbums)
     }
 
@@ -60,12 +55,7 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
     }
 
     override fun onSearchViewCollapse() {
-        val testAlbums =
-            arrayListOf(
-                Album("Artist1", "collection1"),
-                Album("Artist2", "collection2"),
-                Album("Artist3", "collection3")
-            )
+        val testAlbums: List<Album> = arrayListOf()
         view.displayAlbums(testAlbums)
     }
 
@@ -91,6 +81,6 @@ class MainPresenter @Inject constructor(private val view: MainViewPresenterContr
     }
 
     override fun onAlbumClick(position: Int, album: Album) {
-
+        view.openAlbumInfoActivity(album)
     }
 }
