@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         initDagger()
         setupAlbumsListAdapter()
         presenter.onViewCreated()
-
     }
 
     override fun displayAlbums(albums: List<Album>) {

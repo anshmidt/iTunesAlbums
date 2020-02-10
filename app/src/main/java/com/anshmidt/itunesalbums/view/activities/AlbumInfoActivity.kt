@@ -26,6 +26,7 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_info)
+        hideTitleFromAppBar()
         initDagger()
         provideAlbumToPresenter()
         presenter.onViewCreated()
@@ -36,6 +37,10 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         ItunesAlbumsApplication.component
             .plus(AlbumInfoMvpModule(this))
             .inject(this)
+    }
+
+    private fun hideTitleFromAppBar() {
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     override fun showAlbumInfo(album: Album) {
