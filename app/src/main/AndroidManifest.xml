@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.anshmidt.itunesalbums.view.activities.MainActivity"
             android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             >
 
             <intent-filter>

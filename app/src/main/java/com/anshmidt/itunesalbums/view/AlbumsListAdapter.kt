@@ -10,10 +10,10 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.album_card_search_results.view.*
 
 class AlbumsListAdapter(
-    var albums: ArrayList<Album>,
     val albumClickListener: AlbumClickListener
 ) : RecyclerView.Adapter<AlbumsListAdapter.ViewHolder>() {
 
+    var albums: ArrayList<Album> = arrayListOf()
 
     interface AlbumClickListener {
         fun onAlbumClick(position: Int, album: Album)

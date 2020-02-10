@@ -21,6 +21,7 @@ object RequestValues {
     const val SONG_ENTITY = "song"
     const val MUSIC_MEDIA = "music"
     const val ALBUM_TERM_ATTRIBUTE = "albumTerm"
+    const val MIX_TERM_ATTRIBUTE = "mixTerm"
 }
 
 object ItunesResponseKeys {

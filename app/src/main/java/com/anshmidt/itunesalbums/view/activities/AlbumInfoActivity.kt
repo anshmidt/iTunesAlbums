@@ -14,7 +14,6 @@ import com.anshmidt.itunesalbums.network.models.Track
 import com.anshmidt.itunesalbums.view.TracksListAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_album_info.*
-import kotlinx.android.synthetic.main.albums_list.*
 import javax.inject.Inject
 
 class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.View {
@@ -37,7 +36,6 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         ItunesAlbumsApplication.component
             .plus(AlbumInfoMvpModule(this))
             .inject(this)
-
     }
 
     override fun showAlbumInfo(album: Album) {
@@ -45,6 +43,9 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         textAlbumNameAlbumInfo.text = album.albumName
         Glide.with(this)
             .load(album.largeArtworkUrl)
+            // displaying a small low-resolution artwork while the large artwork is downloading
+            .thumbnail(Glide.with(this)
+                .load(album.smallArtworkUrl))
             .centerCrop()
             .skipMemoryCache(false)  // caching of the images is enabled
             .placeholder(R.drawable.album_artwork_placeholder)
@@ -64,9 +65,11 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         presenter.setAlbumInfo(album)
     }
 
-    fun setupTracksListAdapter() {
+    private fun setupTracksListAdapter() {
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerViewTracksList.layoutManager = linearLayoutManager
+        // Disable scrolling on the tracks list - because the whole album info view is scrolled.
+        recyclerViewTracksList.setNestedScrollingEnabled(false)
         recyclerViewTracksList.adapter = tracksListAdapter
     }
 
