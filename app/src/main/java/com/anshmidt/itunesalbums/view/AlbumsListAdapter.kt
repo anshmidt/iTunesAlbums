@@ -1,5 +1,7 @@
 package com.anshmidt.itunesalbums.view
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,5 +71,6 @@ class AlbumsListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(albums[position])
     }
+
 
 }

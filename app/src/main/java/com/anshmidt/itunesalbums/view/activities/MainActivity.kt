@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
 
     override fun showServerNotAvailableErrorMessage(error: Throwable) {
-        Toast.makeText(this, getString(R.string.server_not_available_error_message, error.toString()),
+        Toast.makeText(this, getString(R.string.server_not_available_error_message),
                 Toast.LENGTH_SHORT).show()
     }
 

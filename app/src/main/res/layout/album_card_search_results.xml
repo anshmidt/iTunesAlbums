@@ -6,13 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/album_card_height"
     android:layout_margin="@dimen/album_card_margin"
+    android:background="@color/colorCardsBackground"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutAlbumCardSearchResults"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorCardsBackground">
+        android:background="?attr/selectableItemBackground"
+        >
 
         <ImageView
             android:id="@+id/imageAlbumArtworkSearchResults"
