@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#647886</color>
-    <color name="colorPrimaryDark">#48555f</color>
+<!--    <color name="colorPrimary">#647886</color>-->
+<!--    <color name="colorPrimaryDark">#48555f</color>-->
+    <color name="colorPrimary">#777777</color>
+    <color name="colorPrimaryDark">#4b4b4b</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorCardsBackground">#FFFFFF</color>
-<!--    <color name="colorWindowBackground">#EEEEEE</color>-->
     <color name="colorWindowBackground">#FFFFFF</color>
     <color name="colorDividerAlbumInfo">#DDDDDD</color>
 
