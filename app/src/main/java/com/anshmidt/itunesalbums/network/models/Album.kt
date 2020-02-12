@@ -1,12 +1,15 @@
 package com.anshmidt.itunesalbums.network.models
 
+import android.os.Parcelable
 import com.anshmidt.itunesalbums.network.AlbumResponseKeys
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 
-
+@Parcelize
 data class Album (
 
+    //----Mandatory fields-------------------------------
     @SerializedName(AlbumResponseKeys.ARTIST_NAME)
     val artistName: String,
 
@@ -19,15 +22,23 @@ data class Album (
     @SerializedName(AlbumResponseKeys.COLLECTION_ID)
     val collectionId: Int,
 
-    /**
-     * Optional field in the request
-     */
+    //------Optional fields-------------------------------
     @SerializedName(AlbumResponseKeys.ARTWORK_URL_100)
-    val smallArtworkUrl: String? = null
+    val smallArtworkUrl: String? = null,
 
+    @SerializedName(AlbumResponseKeys.PRIMARY_GENRE_NAME)
+    val primaryGenreName: String? = null,
 
+    @SerializedName(AlbumResponseKeys.COLLECTION_PRICE)
+    val price: Float? = null,
 
-) {
+    /**
+     * 3-letter code, for example USD, EUR
+     */
+    @SerializedName(AlbumResponseKeys.CURRENCY)
+    val currencyCode: String? = null
+
+) : Parcelable {
 
     val largeArtworkUrl: String?
         get() = smallArtworkUrl?.let {

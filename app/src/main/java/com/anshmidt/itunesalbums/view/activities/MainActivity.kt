@@ -1,9 +1,6 @@
 package com.anshmidt.itunesalbums.view.activities
 
-import android.app.ActionBar
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,20 +14,19 @@ import com.anshmidt.itunesalbums.di.module.MainMvpModule
 import com.anshmidt.itunesalbums.mvp.contracts.MainViewPresenterContract
 import com.anshmidt.itunesalbums.mvp.presenters.MainPresenter
 import com.anshmidt.itunesalbums.network.models.Album
-import com.anshmidt.itunesalbums.view.AlbumsListAdapter
+import com.anshmidt.itunesalbums.view.adapters.AlbumsListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
 const val APP_PACKAGE_NAME = "com.anshmidt.itunesalbums"
-const val KEY_INTENT_ARTIST_NAME = "$APP_PACKAGE_NAME.ARTIST_NAME"
-const val KEY_INTENT_ALBUM_NAME = "$APP_PACKAGE_NAME.ALBUM_NAME"
-const val KEY_INTENT_COLLECTION_ID = "$APP_PACKAGE_NAME.COLLECTION_ID"
-const val KEY_INTENT_SMALL_ARTWORK_URL = "$APP_PACKAGE_NAME.SMALL_ARTWORK_URL"
+const val KEY_INTENT_ALBUM = "$APP_PACKAGE_NAME.ALBUM"
+
 
 class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
-    private val albumsListAdapter = AlbumsListAdapter(this)
+    private val albumsListAdapter =
+        AlbumsListAdapter(this)
 
     @Inject
     lateinit var presenter: MainPresenter
@@ -120,10 +116,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
     override fun openAlbumInfoActivity(album: Album) {
         val intent = Intent(this, AlbumInfoActivity::class.java)
-        intent.putExtra(KEY_INTENT_ARTIST_NAME, album.artistName)
-        intent.putExtra(KEY_INTENT_ALBUM_NAME, album.albumName)
-        intent.putExtra(KEY_INTENT_SMALL_ARTWORK_URL, album.smallArtworkUrl)
-        intent.putExtra(KEY_INTENT_COLLECTION_ID, album.collectionId)
+        intent.putExtra(KEY_INTENT_ALBUM, album)
         startActivity(intent)
     }
 

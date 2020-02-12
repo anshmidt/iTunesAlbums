@@ -34,6 +34,10 @@ object AlbumResponseKeys {
     const val COLLECTION_NAME = "collectionName"
     const val ARTWORK_URL_100 = "artworkUrl100"
     const val COLLECTION_ID = "collectionId"
+    const val PRIMARY_GENRE_NAME = "primaryGenreName"
+    const val COLLECTION_PRICE = "collectionPrice"
+    const val CURRENCY = "currency"
+
 }
 
 object TrackResponseKeys {

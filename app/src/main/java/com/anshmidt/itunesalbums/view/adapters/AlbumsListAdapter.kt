@@ -1,7 +1,5 @@
-package com.anshmidt.itunesalbums.view
+package com.anshmidt.itunesalbums.view.adapters
 
-import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anshmidt.itunesalbums.R
 import com.anshmidt.itunesalbums.network.models.Album
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.album_card_search_results.view.*
+import kotlinx.android.synthetic.main.album_card_main.view.*
 
 class AlbumsListAdapter(
     val albumClickListener: AlbumClickListener
@@ -60,7 +58,7 @@ class AlbumsListAdapter(
         return ViewHolder(
             LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.album_card_search_results, parent, false)
+                .inflate(R.layout.album_card_main, parent, false)
         )
     }
 

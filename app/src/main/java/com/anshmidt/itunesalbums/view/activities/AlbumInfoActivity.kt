@@ -11,24 +11,28 @@ import com.anshmidt.itunesalbums.mvp.contracts.AlbumInfoViewPresenterContract
 import com.anshmidt.itunesalbums.mvp.presenters.AlbumInfoPresenter
 import com.anshmidt.itunesalbums.network.models.Album
 import com.anshmidt.itunesalbums.network.models.Track
-import com.anshmidt.itunesalbums.view.TracksListAdapter
+import com.anshmidt.itunesalbums.view.adapters.TracksListAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_album_info.*
+import java.lang.IllegalArgumentException
+import java.util.*
 import javax.inject.Inject
+
 
 class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.View {
 
     @Inject
     lateinit var presenter: AlbumInfoPresenter
 
-    private val tracksListAdapter = TracksListAdapter(arrayListOf())
+    private val tracksListAdapter =
+        TracksListAdapter(arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_info)
         hideTitleFromAppBar()
         initDagger()
-        provideAlbumToPresenter()
+        receiveAlbumFromIntent()
         presenter.onViewCreated()
         setupTracksListAdapter()
     }
@@ -46,6 +50,12 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
     override fun showAlbumInfo(album: Album) {
         textArtistNameAlbumInfo.text = album.artistName
         textAlbumNameAlbumInfo.text = album.albumName
+        showAlbumArtwork(album)
+        showPrice(album)
+        showGenre(album)
+    }
+
+    private fun showAlbumArtwork(album: Album) {
         Glide.with(this)
             .load(album.largeArtworkUrl)
             // displaying a small low-resolution artwork while the large artwork is downloading
@@ -59,14 +69,34 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
             .into(imageAlbumArtworkAlbumInfo)
     }
 
-    private fun provideAlbumToPresenter() {
-        val artistName = intent.getStringExtra(KEY_INTENT_ARTIST_NAME)!!
-        val albumName = intent.getStringExtra(KEY_INTENT_ALBUM_NAME)!!
-        val smallArtworkUrl = intent.getStringExtra(KEY_INTENT_SMALL_ARTWORK_URL) ?: null
-        val collectionId = intent.getIntExtra(KEY_INTENT_COLLECTION_ID, 0)
+    private fun showPrice(album: Album) {
+        if (album.currencyCode == null || album.price == null) {
+            return
+        }
+        val currencySymbol = getCurrencySymbol(album.currencyCode)
+        textPriceAlbumInfo.text = getString(R.string.price_album_info, currencySymbol, album.price)
+    }
 
-        val album = Album(artistName = artistName, albumName = albumName, smallArtworkUrl = smallArtworkUrl,
-            collectionId = collectionId)
+    private fun showGenre(album: Album) {
+        album.primaryGenreName?.let {
+            textGenreAlbumInfo.text = it
+        }
+    }
+
+    /**
+     * Returns currency symbol if currency was recognized, and currency code if currency not recognized.
+     */
+    private fun getCurrencySymbol(currencyCode: String): String {
+        return try {
+            val currency = Currency.getInstance(currencyCode)
+            currency.symbol
+        } catch (e: IllegalArgumentException) {
+            currencyCode
+        }
+    }
+
+    private fun receiveAlbumFromIntent() {
+        val album: Album = intent.getParcelableExtra(KEY_INTENT_ALBUM)!!
         presenter.setAlbumInfo(album)
     }
 

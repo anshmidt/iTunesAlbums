@@ -2,6 +2,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCardsBackground"
@@ -12,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+
 
         <ImageView
             android:id="@+id/imageAlbumArtworkAlbumInfo"
@@ -36,8 +39,8 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Tree and the moonlight"
-            android:textColor="@color/colorTextTitle"
-            android:textSize="24sp"
+            style="@style/MainTextStyle"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageAlbumArtworkAlbumInfo" />
@@ -52,13 +55,67 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:text="Eternal Tears of Sorrow"
-            android:textColor="@color/colorTextContent"
-            android:textSize="18sp"
+            style="@style/SecondaryTextStyle"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textAlbumNameAlbumInfo" />
+
+        <View
+            android:id="@+id/dividerFirstAlbumInfo"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/colorTextSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textArtistNameAlbumInfo" />
+
+
+        <TextView
+            android:id="@+id/textGenreAlbumInfo"
+            style="@style/MainTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Genre: Alternative"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dividerFirstAlbumInfo" />
+
+        <TextView
+            android:id="@+id/textPriceAlbumInfo"
+            style="@style/MainTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Price: $12.99"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textGenreAlbumInfo" />
+
+        <View
+            android:id="@+id/dividerSecondAlbumInfo"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/colorTextSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textPriceAlbumInfo" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTracksList"
@@ -73,7 +130,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textArtistNameAlbumInfo"
+            app:layout_constraintTop_toBottomOf="@+id/dividerSecondAlbumInfo"
             >
 
         </androidx.recyclerview.widget.RecyclerView>

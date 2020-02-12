@@ -1,4 +1,4 @@
-package com.anshmidt.itunesalbums.view
+package com.anshmidt.itunesalbums.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View

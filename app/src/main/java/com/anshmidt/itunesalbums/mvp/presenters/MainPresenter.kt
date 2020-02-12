@@ -34,7 +34,11 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
                 { itunesAlbumsResponse: ItunesAlbumsResponse ->
                     onSuggestedAlbumsReceivedFromServer(itunesAlbumsResponse)
                 },
-                // error message is not shown if there was a failure with getting suggested albums
+                /*
+                 Error message is not shown if there was a failure with getting suggested albums,
+                 because suggested albums are an optional thing (user doesn't ask for them),
+                 unlike search results.
+                 */
                 { view.displayAlbums(arrayListOf())
                 }
             )
@@ -85,20 +89,17 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
                 attribute = RequestValues.MIX_TERM_ATTRIBUTE,
                 limit = MAX_NUMBER_OF_ALBUMS_FOR_DEFAULT
             )
-//            .getSearchResults(
-//                searchText = "6",
-//                entityType = RequestValues.ALBUM_ENTITY,
-//                mediaType = RequestValues.MUSIC_MEDIA,
-//                attribute = "mixTerm",
-//                limit = MAX_NUMBER_OF_ALBUMS_FOR_SEARCH_RESULT
-//            )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    /**
+     * iTunes API doesn't provide a way to get a list of some popular albums,
+     * but when you search using small random numbers as a search query,
+     * the search results seem good enough to use them as suggested albums.
+     */
     private fun getSearchQueryForSuggestedAlbums(): String {
-        val value =  Random.nextInt(0,9).toString()
-        return value
+        return Random.nextInt(0,9).toString()
     }
 
     private fun onSuggestedAlbumsReceivedFromServer(itunesAlbumsResponse: ItunesAlbumsResponse) {
