@@ -6,6 +6,7 @@ interface MainViewPresenterContract {
 
     interface View {
         fun displayAlbums(albums: List<Album>)
+        fun displayNoAlbums()
         fun showServerNotAvailableErrorMessage(error: Throwable)
         fun openAlbumInfoActivity(album: Album)
     }
@@ -18,6 +19,7 @@ interface MainViewPresenterContract {
         fun onSearchRequest(searchQuery: String)
         fun onSearchViewExpand()
         fun onSearchViewCollapse()
+        fun onSearchViewFocused()
 
         fun onAlbumClick(position: Int, album: Album)
     }

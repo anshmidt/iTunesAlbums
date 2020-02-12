@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -43,6 +45,10 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         albumsListAdapter.updateAlbums(albums)
     }
 
+    override fun displayNoAlbums() {
+        displayAlbums(arrayListOf())
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
         val searchMenuItem = menu.findItem(R.id.menuItemSearch)
@@ -61,7 +67,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
             }
         })
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     presenter.onSearchRequest(it)
@@ -74,6 +80,12 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
                 return false
             }
         })
+
+        searchView.setOnQueryTextFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                presenter.onSearchViewFocused()
+            }
+        }
 
         return true
     }

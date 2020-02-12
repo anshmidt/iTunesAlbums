@@ -59,11 +59,15 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
     }
 
     override fun onSearchViewExpand() {
-        view.displayAlbums(arrayListOf())
+        view.displayNoAlbums()
     }
 
     override fun onSearchViewCollapse() {
         displaySuggestedAlbums()
+    }
+
+    override fun onSearchViewFocused() {
+        view.displayNoAlbums()
     }
 
     private fun getSearchByAlbumResponseSingle(searchQuery: String): Single<ItunesAlbumsResponse> {
