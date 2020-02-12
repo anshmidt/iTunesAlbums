@@ -38,7 +38,6 @@
             android:layout_marginRight="16dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Tree and the moonlight"
             style="@style/MainTextStyle"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +55,6 @@
             android:layout_marginRight="16dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Eternal Tears of Sorrow"
             style="@style/SecondaryTextStyle"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textAlbumNameAlbumInfo" />
 
         <View
-            android:id="@+id/dividerFirstAlbumInfo"
+            android:id="@+id/dividerArtistNameAlbumInfo"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -72,7 +70,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:background="@color/colorTextSecondary"
+            android:background="@color/colorDividerAlbumInfo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textArtistNameAlbumInfo" />
@@ -86,9 +84,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:text="Genre: Alternative"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dividerFirstAlbumInfo" />
+            app:layout_constraintTop_toBottomOf="@+id/dividerArtistNameAlbumInfo" />
 
         <TextView
             android:id="@+id/textPriceAlbumInfo"
@@ -98,12 +95,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:text="Price: $12.99"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textGenreAlbumInfo" />
 
         <View
-            android:id="@+id/dividerSecondAlbumInfo"
+            android:id="@+id/dividerPriceAlbumInfo"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="32dp"
@@ -111,7 +107,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:background="@color/colorTextSecondary"
+            android:background="@color/colorDividerAlbumInfo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPriceAlbumInfo" />
@@ -130,7 +126,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dividerSecondAlbumInfo"
+            app:layout_constraintTop_toBottomOf="@+id/dividerPriceAlbumInfo"
             >
 
         </androidx.recyclerview.widget.RecyclerView>

@@ -1,6 +1,7 @@
 package com.anshmidt.itunesalbums.view.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.anshmidt.itunesalbums.view.adapters.TracksListAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_album_info.*
 import java.lang.IllegalArgumentException
+import java.text.NumberFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -69,30 +71,44 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
             .into(imageAlbumArtworkAlbumInfo)
     }
 
-    private fun showPrice(album: Album) {
-        if (album.currencyCode == null || album.price == null) {
-            return
-        }
-        val currencySymbol = getCurrencySymbol(album.currencyCode)
-        textPriceAlbumInfo.text = getString(R.string.price_album_info, currencySymbol, album.price)
-    }
+
 
     private fun showGenre(album: Album) {
-        album.primaryGenreName?.let {
-            textGenreAlbumInfo.text = it
+        if (album.genre == null) {
+            textGenreAlbumInfo.visibility = View.GONE
+            dividerArtistNameAlbumInfo.visibility = View.GONE
+        } else {
+            textGenreAlbumInfo.text = getString(R.string.genre_album_info, album.genre)
+        }
+    }
+
+    private fun showPrice(album: Album) {
+        if (album.currencyCode == null || album.price == null) {
+            textPriceAlbumInfo.visibility = View.GONE
+            return
+        }
+        val formattedPriceWithCurrency = getPriceWithCurrencyFormatted(album.price, album.currencyCode)
+        textPriceAlbumInfo.text = getString(R.string.price_album_info, formattedPriceWithCurrency)
+    }
+
+
+    private fun getPriceWithCurrencyFormatted(price: Float, currencyCode: String): String {
+        val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
+        return try {
+            format.currency = Currency.getInstance(currencyCode)
+            format.format(price)
+        } catch (e: IllegalArgumentException) { //could happen if currencyCode had unexpected value
+            val formattedPrice = getFormattedPrice(price)
+            "$currencyCode $formattedPrice"
         }
     }
 
     /**
-     * Returns currency symbol if currency was recognized, and currency code if currency not recognized.
+     * Only for cases if price and currency cannot be formatted normally
      */
-    private fun getCurrencySymbol(currencyCode: String): String {
-        return try {
-            val currency = Currency.getInstance(currencyCode)
-            currency.symbol
-        } catch (e: IllegalArgumentException) {
-            currencyCode
-        }
+    private fun getFormattedPrice(price: Float): String {
+        val PRICE_FORMAT = "%,.2f"
+        return String.format(PRICE_FORMAT, price)
     }
 
     private fun receiveAlbumFromIntent() {

@@ -6,7 +6,7 @@
     <color name="colorCardsBackground">#FFFFFF</color>
 <!--    <color name="colorWindowBackground">#EEEEEE</color>-->
     <color name="colorWindowBackground">#FFFFFF</color>
-<!--    <color name="colorDividerAlbumInfo">#CCCCCC</color>-->
+    <color name="colorDividerAlbumInfo">#DDDDDD</color>
 
     <color name="colorTextMain">#111111</color>
     <color name="colorTextSecondary">#AAAAAA</color>

@@ -32,6 +32,10 @@ class AlbumsListAdapter(
         fun bind(album: Album) {
             textAlbumName.text = album.albumName
             textArtistName.text = album.artistName
+            showArtwork(album)
+        }
+
+        private fun showArtwork(album: Album) {
             Glide.with(itemView)
                 .load(album.smallArtworkUrl)
                 .centerCrop()

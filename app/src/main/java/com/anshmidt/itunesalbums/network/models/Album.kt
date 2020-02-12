@@ -27,7 +27,7 @@ data class Album (
     val smallArtworkUrl: String? = null,
 
     @SerializedName(AlbumResponseKeys.PRIMARY_GENRE_NAME)
-    val primaryGenreName: String? = null,
+    val genre: String? = null,
 
     @SerializedName(AlbumResponseKeys.COLLECTION_PRICE)
     val price: Float? = null,

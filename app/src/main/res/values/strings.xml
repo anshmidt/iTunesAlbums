@@ -8,6 +8,6 @@
 
     <!--Album info screen-->
     <string name="genre_album_info">Genre: %1$s</string>
-    <string name="price_album_info">Price: %1$s%2$f</string>
+    <string name="price_album_info">Price: %1$s</string>
     <string name="cannot_get_tracks_error_message">Cannot get tracks from iTunes server: %1$s</string>
 </resources>
