@@ -7,8 +7,9 @@ interface MainViewPresenterContract {
     interface View {
         fun displayAlbums(albums: List<Album>)
         fun displayNoAlbums()
-        fun showServerNotAvailableErrorMessage(error: Throwable)
         fun openAlbumInfoActivity(album: Album)
+        fun showServerNotAvailableErrorMessage(error: Throwable)
+        fun showCannotFindAlbumsMessage()
     }
 
     interface Presenter {

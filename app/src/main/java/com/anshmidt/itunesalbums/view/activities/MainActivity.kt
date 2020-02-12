@@ -110,6 +110,11 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
                 Toast.LENGTH_SHORT).show()
     }
 
+    override fun showCannotFindAlbumsMessage() {
+        Toast.makeText(this, getString(R.string.cannot_find_albums_message),
+                Toast.LENGTH_LONG).show()
+    }
+
     private fun setSearchViewHint(searchView: SearchView) {
         searchView.queryHint = getString(R.string.search_field_hint)
     }

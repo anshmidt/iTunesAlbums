@@ -118,8 +118,13 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
 
     private fun onSearchResultsReceivedFromServer(itunesAlbumsResponse: ItunesAlbumsResponse) {
         val albumsSortedAlphabetically = itunesAlbumsResponse.albumsList.sortedBy { it.albumName }
-        view.displayAlbums(albumsSortedAlphabetically)
+        if (albumsSortedAlphabetically.isEmpty()) {
+            view.showCannotFindAlbumsMessage()
+        } else {
+            view.displayAlbums(albumsSortedAlphabetically)
+        }
     }
+
 
     private fun onErrorFromServer(error: Throwable) {
         view.showServerNotAvailableErrorMessage(error)

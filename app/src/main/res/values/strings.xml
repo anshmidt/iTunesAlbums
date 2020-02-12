@@ -5,6 +5,7 @@
     <string name="search_field_hint">Search for album</string>
     <string name="album_artwork_content_description">Album artwork</string>
     <string name="server_not_available_error_message">Cannot connect to iTunes server</string>
+    <string name="cannot_find_albums_message">No albums found for your search request</string>
 
     <!--Album info screen-->
     <string name="genre_album_info">Genre: %1$s</string>

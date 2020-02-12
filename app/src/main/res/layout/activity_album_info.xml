@@ -36,7 +36,7 @@
             android:layout_marginEnd="@dimen/content_horizontal_margin_album_info"
             android:layout_marginRight="@dimen/content_horizontal_margin_album_info"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="5"
             android:textColor="@color/colorTextMain"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
