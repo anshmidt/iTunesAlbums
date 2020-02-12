@@ -27,6 +27,7 @@
 
 
         <activity android:name="com.anshmidt.itunesalbums.view.activities.AlbumInfoActivity"
+            android:launchMode="singleTop"
             android:parentActivityName="com.anshmidt.itunesalbums.view.activities.MainActivity">
         </activity>
     </application>
