@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -57,12 +55,12 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
         searchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
-                presenter.onSearchViewExpand()
+                presenter.onSearchExpanded()
                 return true
             }
 
             override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                presenter.onSearchViewCollapse()
+                presenter.onSearchCollapsed()
                 return true
             }
         })
@@ -70,7 +68,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    presenter.onSearchRequest(it)
+                    presenter.onSearchRequestSubmitted(it)
                     searchView.clearFocus()
                 }
                 return true
@@ -83,7 +81,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
         searchView.setOnQueryTextFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
-                presenter.onSearchViewFocused()
+                presenter.onSearchFocused()
             }
         }
 

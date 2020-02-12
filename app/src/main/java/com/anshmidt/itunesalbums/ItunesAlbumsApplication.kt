@@ -23,7 +23,7 @@ class ItunesAlbumsApplication : Application() {
     protected fun initDaggerComponent(): ApplicationComponent {
         return DaggerApplicationComponent
             .builder()
-            .networkModule(NetworkModule())
+            .networkModule(NetworkModule(this))
             .build()
     }
 }

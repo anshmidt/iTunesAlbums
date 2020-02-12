@@ -45,7 +45,7 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
         subscriptions.add(subscription)
     }
 
-    override fun onSearchRequest(searchQuery: String) {
+    override fun onSearchRequestSubmitted(searchQuery: String) {
         val subscription = getSearchByAlbumResponseSingle(searchQuery)
             .subscribe(
                 { itunesAlbumsResponse: ItunesAlbumsResponse ->
@@ -58,15 +58,15 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
         subscriptions.add(subscription)
     }
 
-    override fun onSearchViewExpand() {
+    override fun onSearchExpanded() {
         view.displayNoAlbums()
     }
 
-    override fun onSearchViewCollapse() {
+    override fun onSearchCollapsed() {
         displaySuggestedAlbums()
     }
 
-    override fun onSearchViewFocused() {
+    override fun onSearchFocused() {
         view.displayNoAlbums()
     }
 

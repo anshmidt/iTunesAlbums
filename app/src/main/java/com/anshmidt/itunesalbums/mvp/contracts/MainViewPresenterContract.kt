@@ -16,10 +16,10 @@ interface MainViewPresenterContract {
         fun onViewStopped()
         fun onViewDestroyed()
 
-        fun onSearchRequest(searchQuery: String)
-        fun onSearchViewExpand()
-        fun onSearchViewCollapse()
-        fun onSearchViewFocused()
+        fun onSearchRequestSubmitted(searchQuery: String)
+        fun onSearchExpanded()
+        fun onSearchCollapsed()
+        fun onSearchFocused()
 
         fun onAlbumClick(position: Int, album: Album)
     }

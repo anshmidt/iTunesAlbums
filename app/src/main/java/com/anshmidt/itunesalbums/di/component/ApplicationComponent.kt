@@ -4,8 +4,6 @@ import com.anshmidt.itunesalbums.ItunesAlbumsApplication
 import com.anshmidt.itunesalbums.di.module.AlbumInfoMvpModule
 import com.anshmidt.itunesalbums.di.module.MainMvpModule
 import com.anshmidt.itunesalbums.di.module.NetworkModule
-import com.anshmidt.itunesalbums.view.activities.AlbumInfoActivity
-import com.anshmidt.itunesalbums.view.activities.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
