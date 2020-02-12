@@ -6,15 +6,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MainTextStyle">
-        <item name="android:textColor">@color/colorTextMain</item>
-<!--        <item name="android:fontFamily">sans-serif-light</item>-->
-        <item name="android:textStyle">normal</item>
-    </style>
+
 
     <style name="SecondaryTextStyle">
         <item name="android:textColor">@color/colorTextSecondary</item>
-<!--        <item name="android:fontFamily">sans-serif-light</item>-->
         <item name="android:textStyle">normal</item>
     </style>
 

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="album_card_height">100dp</dimen>
-    <dimen name="album_card_margin">5dp</dimen>
+
+<!--Album card in albums list-->
+    <dimen name="height_album_card">100dp</dimen>
+    <dimen name="margin_album_card">10dp</dimen>
+    <dimen name="content_horizontal_margin_album_card">16dp</dimen>
+
+<!-- Album info screen-->
+    <dimen name="content_horizontal_margin_album_info">32dp</dimen>
+
+
 </resources>
