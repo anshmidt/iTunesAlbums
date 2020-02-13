@@ -128,7 +128,6 @@ class MainPresenter @Inject constructor(
         }
     }
 
-
     private fun onErrorFromServer(error: Throwable) {
         view.showServerNotAvailableErrorMessage(error)
     }

@@ -6,12 +6,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
-
-    <style name="SecondaryTextStyle">
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
-
 </resources>

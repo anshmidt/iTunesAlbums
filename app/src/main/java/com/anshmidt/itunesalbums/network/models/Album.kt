@@ -46,7 +46,7 @@ data class Album (
         }
 
     /**
-     * It's possible to get larger artwork by an URL not specified in itunes server response:
+     * It's possible to get larger artwork by an URL not specified in iTunes server response:
      * For example, response contains 100*100 artwork URL:
      * "artworkUrl100":"<...>/100x100bb.jpg"
      * Then, if you change 100 to 600 in this URL, this will be a valid link to the 600*600 artwork.

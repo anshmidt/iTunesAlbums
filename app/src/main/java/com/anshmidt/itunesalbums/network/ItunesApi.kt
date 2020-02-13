@@ -8,7 +8,6 @@ import retrofit2.http.Query
 
 interface ItunesApi {
 
-
     /**
      * Example: https://itunes.apple.com/search?term=out&entity=album&media=music&attribute=albumTerm&limit=5
      */

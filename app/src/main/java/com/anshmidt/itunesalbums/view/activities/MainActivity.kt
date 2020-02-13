@@ -16,7 +16,6 @@ import com.anshmidt.itunesalbums.mvp.presenters.MainPresenter
 import com.anshmidt.itunesalbums.network.models.Album
 import com.anshmidt.itunesalbums.view.adapters.AlbumsListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 import javax.inject.Inject
 
 
@@ -26,8 +25,7 @@ const val KEY_INTENT_ALBUM = "$APP_PACKAGE_NAME.ALBUM"
 
 class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, AlbumsListAdapter.AlbumClickListener {
 
-    private val albumsListAdapter =
-        AlbumsListAdapter(this)
+    private val albumsListAdapter = AlbumsListAdapter(this)
 
     @Inject
     lateinit var presenter: MainPresenter
@@ -108,17 +106,6 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
             .inject(this)
     }
 
-
-    override fun showServerNotAvailableErrorMessage(error: Throwable) {
-        Toast.makeText(this, getString(R.string.server_not_available_error_message),
-                Toast.LENGTH_SHORT).show()
-    }
-
-    override fun showCannotFindAlbumsMessage() {
-        Toast.makeText(this, getString(R.string.cannot_find_albums_message),
-                Toast.LENGTH_LONG).show()
-    }
-
     private fun setSearchViewHint(searchView: SearchView) {
         searchView.queryHint = getString(R.string.search_field_hint)
     }
@@ -141,6 +128,16 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         val intent = Intent(this, AlbumInfoActivity::class.java)
         intent.putExtra(KEY_INTENT_ALBUM, album)
         startActivity(intent)
+    }
+
+    override fun showServerNotAvailableErrorMessage(error: Throwable) {
+        Toast.makeText(this, getString(R.string.server_not_available_error_message),
+            Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showCannotFindAlbumsMessage() {
+        Toast.makeText(this, getString(R.string.cannot_find_albums_message),
+            Toast.LENGTH_LONG).show()
     }
 
 

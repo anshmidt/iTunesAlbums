@@ -37,7 +37,6 @@ object AlbumResponseKeys {
     const val PRIMARY_GENRE_NAME = "primaryGenreName"
     const val COLLECTION_PRICE = "collectionPrice"
     const val CURRENCY = "currency"
-
 }
 
 object TrackResponseKeys {

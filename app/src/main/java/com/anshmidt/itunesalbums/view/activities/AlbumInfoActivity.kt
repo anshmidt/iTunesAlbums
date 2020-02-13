@@ -26,8 +26,7 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
     @Inject
     lateinit var presenter: AlbumInfoPresenter
 
-    private val tracksListAdapter =
-        TracksListAdapter(arrayListOf())
+    private val tracksListAdapter = TracksListAdapter(arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +34,8 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
         hideTitleFromAppBar()
         initDagger()
         receiveAlbumFromIntent()
-        presenter.onViewCreated()
         setupTracksListAdapter()
+        presenter.onViewCreated()
     }
 
     private fun initDagger() {
@@ -70,8 +69,6 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
             .fallback(R.drawable.album_artwork_placeholder)
             .into(imageAlbumArtworkAlbumInfo)
     }
-
-
 
     private fun showGenre(album: Album) {
         if (album.genre == null) {
@@ -124,7 +121,7 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
     private fun setupTracksListAdapter() {
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerViewTracksList.layoutManager = linearLayoutManager
-        // Disable scrolling on the tracks list - because the whole album info view is scrolled.
+        // Disable scrolling on the tracks list - because the whole album info view is scrollable.
         recyclerViewTracksList.setNestedScrollingEnabled(false)
         recyclerViewTracksList.adapter = tracksListAdapter
     }
