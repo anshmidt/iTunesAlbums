@@ -25,7 +25,7 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
 
     private fun displaySuggestedAlbums() {
         suggestedAlbums?.let {
-            view.displayAlbums(suggestedAlbums!!)
+            view.displayAlbums(it)
             return
         }
 

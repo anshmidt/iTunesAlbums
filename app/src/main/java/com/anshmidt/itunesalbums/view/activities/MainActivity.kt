@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
             }
         }
 
+        searchView.maxWidth = Integer.MAX_VALUE  // make searchView fill the whole bar
+
         return true
     }
 
