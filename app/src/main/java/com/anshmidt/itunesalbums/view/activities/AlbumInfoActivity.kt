@@ -93,7 +93,12 @@ class AlbumInfoActivity : AppCompatActivity(), AlbumInfoViewPresenterContract.Vi
 
 
     private fun getPriceWithCurrencyFormatted(price: Float, currencyCode: String): String {
-        val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
+        /*
+          The application is not localized, so numbers and currencies are displayed based on
+          format for US locale.
+         */
+        val locale = Locale.US
+        val format: NumberFormat = NumberFormat.getCurrencyInstance(locale)
         return try {
             format.currency = Currency.getInstance(currencyCode)
             format.format(price)
