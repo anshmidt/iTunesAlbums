@@ -10,7 +10,7 @@ This Android app displays musical albums from iTunes.
 - On the screen with detailed info about the album user can find a full-size artwork, album price, genre, and list of songs.
 - Downloaded images and iTunes server responses are cached.
 
-<img src="https://user-images.githubusercontent.com/12444628/74476878-562f1b00-4ebb-11ea-8960-e3f3962decbe.gif" alt="Screen 1" width="280"/>
+<img src="https://user-images.githubusercontent.com/12444628/74482886-67c9f000-4ec6-11ea-8648-51a725d7652a.gif" alt="Screen 1" width="280"/>
 <br/><br/>
 
 
