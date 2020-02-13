@@ -11,8 +11,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import kotlin.random.Random
 
-class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View, val itunesApi: ItunesApi)
-    : MainViewPresenterContract.Presenter, BasePresenter() {
+class MainPresenter @Inject constructor(
+    val view: MainViewPresenterContract.View,
+    val itunesApi: ItunesApi
+) : MainViewPresenterContract.Presenter, BasePresenter() {
 
     val MAX_NUMBER_OF_ALBUMS_FOR_SEARCH_RESULT = 100
     val MAX_NUMBER_OF_ALBUMS_FOR_DEFAULT = 10
@@ -24,6 +26,7 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
     }
 
     private fun displaySuggestedAlbums() {
+        // Show albums if they are present in memory. If not, download them.
         suggestedAlbums?.let {
             view.displayAlbums(it)
             return
@@ -110,7 +113,7 @@ class MainPresenter @Inject constructor(val view: MainViewPresenterContract.View
         val albumsSortedAlphabetically = itunesAlbumsResponse.albumsList.sortedBy { it.albumName }
         /*
          Saving suggested albums so they could be displayed when returning to the view without
-         requests to the server
+         requesting the server.
          */
         suggestedAlbums = albumsSortedAlphabetically
         view.displayAlbums(albumsSortedAlphabetically)

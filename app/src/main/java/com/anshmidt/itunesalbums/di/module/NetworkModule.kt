@@ -1,7 +1,6 @@
 package com.anshmidt.itunesalbums.di.module
 
 import android.app.Application
-import android.content.Context
 import com.anshmidt.itunesalbums.network.ApiConstants
 import com.anshmidt.itunesalbums.network.ItunesApi
 import dagger.Module

@@ -1,22 +1,21 @@
 package com.anshmidt.itunesalbums.mvp.presenters
 
-import android.util.Log
 import com.anshmidt.itunesalbums.mvp.contracts.AlbumInfoViewPresenterContract
-import com.anshmidt.itunesalbums.network.ApiConstants
 import com.anshmidt.itunesalbums.network.ItunesApi
 import com.anshmidt.itunesalbums.network.RequestValues
 import com.anshmidt.itunesalbums.network.TrackResponseValues
 import com.anshmidt.itunesalbums.network.models.Album
 import com.anshmidt.itunesalbums.network.models.ItunesTracksResponse
 import com.anshmidt.itunesalbums.network.models.Track
-import com.google.gson.Gson
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class AlbumInfoPresenter @Inject constructor(private val view: AlbumInfoViewPresenterContract.View, val itunesApi: ItunesApi)
-    : AlbumInfoViewPresenterContract.Presenter, BasePresenter() {
+class AlbumInfoPresenter @Inject constructor(
+    private val view: AlbumInfoViewPresenterContract.View,
+    private val itunesApi: ItunesApi
+) : AlbumInfoViewPresenterContract.Presenter, BasePresenter() {
 
     lateinit var album: Album
 

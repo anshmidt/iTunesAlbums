@@ -15,6 +15,7 @@ interface AlbumInfoViewPresenterContract {
         fun setAlbumInfo(album: Album)
         fun onViewCreated()
         fun onViewStopped()
+        fun onViewDestroyed()
     }
 
 }

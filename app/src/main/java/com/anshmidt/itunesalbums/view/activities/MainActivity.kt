@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
 
     override fun displayAlbums(albums: List<Album>) {
         albumsListAdapter.updateAlbums(albums)
+        scrollAlbumsListToTop()
     }
 
     override fun displayNoAlbums() {
@@ -126,6 +127,10 @@ class MainActivity : AppCompatActivity(), MainViewPresenterContract.View, Albums
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerViewAlbumsList.layoutManager = linearLayoutManager
         recyclerViewAlbumsList.adapter = albumsListAdapter
+    }
+
+    private fun scrollAlbumsListToTop() {
+        recyclerViewAlbumsList.layoutManager?.scrollToPosition(0)
     }
 
     override fun onAlbumClick(position: Int, album: Album) {
