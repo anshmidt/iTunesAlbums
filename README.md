@@ -1,4 +1,4 @@
-# iTunesAlbums
+# iTunes Albums
 This Android app displays musical albums from iTunes.
 
 <img src="https://user-images.githubusercontent.com/12444628/74474995-a0ae9880-4eb7-11ea-8929-1bfaf8d76199.png" alt="Screen 1" width="1000"/>
